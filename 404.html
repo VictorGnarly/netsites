@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting — Yesterday's Papers</title>
+  <script>
+    (function() {
+      var parts = window.location.pathname.replace(/^\/+|\/+$/g, '').split('/');
+      var slug = parts[0] || '';
+      var page = parts[1] || '';
+      var pageQuery = (page && /^\d+$/.test(page) && parseInt(page, 10) > 1) ? '&page=' + page : '';
+      if (/^\d{4}-\d{2}-\d{2}$/.test(slug)) {
+        window.location.replace('/?date=' + encodeURIComponent(slug) + pageQuery);
+      } else if (/^\d{1,4}$/.test(slug)) {
+        window.location.replace('/?issue=' + encodeURIComponent(slug.padStart(4, '0')) + pageQuery);
+      } else {
+        window.location.replace('/');
+      }
+    })();
+  </script>
+</head>
+<body style="background:#0f172a; color:#fff; font-family:monospace; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
+  <div>Redirecting to Yesterday's Papers... <a href="/" style="color:#38bdf8;">Click here if not redirected</a></div>
+</body>
+</html>
